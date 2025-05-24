@@ -1,98 +1,98 @@
 # Twitch Video Downloader 🎬
 
-Zaawansowany skrypt Python do pobierania filmów, VOD-ów i klipów z platformy Twitch.tv. Wykorzystuje bibliotekę `yt-dlp` do niezawodnego pobierania treści z różnymi opcjami jakości i metadanych.
+Advanced Python script for downloading videos, VODs, and clips from Twitch.tv platform. Utilizes the `yt-dlp` library for reliable content downloading with various quality options and metadata support.
 
-## 📋 Spis treści
+## 📋 Table of Contents
 
-- [Instalacja](#-instalacja)
-- [Szybki start](#-szybki-start)
-- [Szczegółowe użycie](#-szczegółowe-użycie)
-- [Obsługiwane formaty](#-obsługiwane-formaty)
-- [Opcje jakości](#-opcje-jakości)
-- [Struktura plików](#-struktura-plików)
-- [Rozwiązywanie problemów](#-rozwiązywanie-problemów)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+- [Detailed Usage](#-detailed-usage)
+- [Supported Formats](#-supported-formats)
+- [Quality Options](#-quality-options)
+- [File Structure](#-file-structure)
+- [Troubleshooting](#-troubleshooting)
 - [API Reference](#-api-reference)
-- [Przykłady](#-przykłady)
+- [Examples](#-examples)
 
-## 🚀 Instalacja
+## 🚀 Installation
 
-### Wymagania systemowe
+### System Requirements
 
-- Python 3.11 lub nowszy
-- System operacyjny: Windows, macOS, Linux
-- Połączenie internetowe
+- Python 3.11 or newer
+- Operating System: Windows, macOS, Linux
+- Internet connection
 
-### Instalacja zależności
+### Installing Dependencies
 
 ```bash
 pip install yt-dlp
 ```
 
-### Pobieranie skryptu
+### Downloading the Script
 
-1. Skopiuj kod skryptu do pliku `twitch_downloader.py`
-2. Nadaj uprawnienia wykonywania (Linux/macOS):
+1. Copy the script code to a file named `twitch_downloader.py`
+2. Grant execution permissions (Linux/macOS):
    ```bash
    chmod +x twitch_downloader.py
    ```
 
-## ⚡ Szybki start
+## ⚡ Quick Start
 
-### Tryb interaktywny
+### Interactive Mode
 ```bash
 python twitch_downloader.py
 ```
 
-### Użycie z argumentami
+### Command Line Arguments
 ```bash
-# Podstawowe użycie
+# Basic usage
 python twitch_downloader.py "https://www.twitch.tv/videos/2465592622"
 
-# Z określoną jakością
+# With specific quality
 python twitch_downloader.py "https://www.twitch.tv/videos/2465592622" "720p"
 ```
 
-## 📖 Szczegółowe użycie
+## 📖 Detailed Usage
 
-### Tryb interaktywny
+### Interactive Mode
 
-Po uruchomieniu skryptu bez argumentów, zostaniesz poproszony o:
+When running the script without arguments, you'll be prompted for:
 
-1. **URL filmu** - Wklej link do filmu z Twitcha
-2. **Jakość pobierania** - Wybierz jedną z dostępnych opcji
+1. **Video URL** - Paste the Twitch video link
+2. **Download Quality** - Choose from available options
 
-#### Przykład sesji interaktywnej:
+#### Interactive Session Example:
 ```
 🎬 Twitch Video Downloader
 ==============================
-Wprowadź URL filmu z Twitcha:
+Enter Twitch video URL:
 URL: https://www.twitch.tv/videos/2465592622
 
-Dostępne jakości:
-1. best (najlepsza dostępna, max 1080p)
+Available qualities:
+1. best (best available, max 1080p)
 2. 1080p
 3. 720p
 4. 480p
 5. 360p
-6. audio (tylko dźwięk)
-7. best + napisy (może powodować błędy)
+6. audio (audio only)
+7. best + subtitles (may cause errors)
 
-Wybierz jakość (1-7) lub wciśnij Enter dla domyślnej: 2
+Choose quality (1-7) or press Enter for default: 2
 ```
 
-### Tryb z argumentami
+### Command Line Mode
 
 ```bash
-python twitch_downloader.py [URL] [JAKOŚĆ]
+python twitch_downloader.py [URL] [QUALITY]
 ```
 
-**Parametry:**
-- `URL` - Link do filmu na Twitchu (wymagany)
-- `JAKOŚĆ` - Opcjonalna jakość filmu (domyślnie: `best`)
+**Parameters:**
+- `URL` - Twitch video link (required)
+- `QUALITY` - Optional video quality (default: `best`)
 
-## 🎯 Obsługiwane formaty
+## 🎯 Supported Formats
 
-Skrypt obsługuje następujące typy linków z Twitcha:
+The script supports the following Twitch link types:
 
 ### VOD (Video on Demand)
 ```
@@ -100,154 +100,154 @@ https://www.twitch.tv/videos/123456789
 https://www.twitch.tv/username/video/123456789
 ```
 
-### Klipy
+### Clips
 ```
 https://clips.twitch.tv/ClipName
 https://www.twitch.tv/username/clip/ClipName
 ```
 
-### Przykłady prawidłowych URL:
+### Valid URL Examples:
 - `https://www.twitch.tv/videos/2465592622`
 - `https://clips.twitch.tv/FamousCleverSalamanderNotATK`
 - `https://www.twitch.tv/sodapoppin/clip/PowerfulHelplessCodSSSsss`
 
-## 🎥 Opcje jakości
+## 🎥 Quality Options
 
-| Opcja | Opis | Format |
-|-------|------|--------|
-| `best` | Najlepsza dostępna (max 1080p) | Video + Audio |
-| `1080p` | Full HD (jeśli dostępne) | Video + Audio |
+| Option | Description | Format |
+|--------|-------------|--------|
+| `best` | Best available (max 1080p) | Video + Audio |
+| `1080p` | Full HD (if available) | Video + Audio |
 | `720p` | HD | Video + Audio |
 | `480p` | SD | Video + Audio |
-| `360p` | Niska jakość | Video + Audio |
-| `audio` | Tylko dźwięk | Audio only |
-| `worst` | Najniższa jakość | Video + Audio |
+| `360p` | Low quality | Video + Audio |
+| `audio` | Audio only | Audio only |
+| `worst` | Lowest quality | Video + Audio |
 
-### Automatyczny wybór jakości
+### Automatic Quality Selection
 
-Skrypt automatycznie wybiera najlepszą dostępną jakość w ramach określonego limitu. Jeśli wybierzesz `1080p`, a film dostępny jest tylko w `720p`, zostanie pobrana jakość `720p`.
+The script automatically selects the best available quality within the specified limit. If you choose `1080p` but the video is only available in `720p`, it will download the `720p` version.
 
-## 📁 Struktura plików
+## 📁 File Structure
 
-### Katalog docelowy
-Domyślnie pliki są zapisywane w katalogu `downloads/` w lokalizacji skryptu.
+### Target Directory
+By default, files are saved to the `downloads/` directory in the script's location.
 
-### Nazewnictwo plików
+### File Naming Convention
 ```
-[Nazwa_kanału]_[Tytuł_filmu]_[ID_filmu].[rozszerzenie]
-```
-
-#### Przykład:
-```
-vigoletto_⭐Dołączcie do czatu! Kultowy czwartek !ETS2 !Driving !Simulator !chat !tiktok_v2465592622.mp4
+[Channel_Name]_[Video_Title]_[Video_ID].[extension]
 ```
 
-### Dodatkowe pliki
-
-Skrypt może tworzyć następujące dodatkowe pliki:
-
-- **`.info.json`** - Metadane filmu (tytuł, opis, statystyki)
-- **`.rechat.json`** - Napisy/czat (jeśli dostępne i włączone)
-
-## 🔧 Rozwiązywanie problemów
-
-### Częste błędy i rozwiązania
-
-#### 1. Błąd 404 - Film nie znaleziony
+#### Example:
 ```
-❌ Film nie został znaleziony (404). Sprawdź czy URL jest prawidłowy i film nadal istnieje.
+vigoletto_⭐Join the chat! Kultowy czwartek !ETS2 !Driving !Simulator !chat !tiktok_v2465592622.mp4
 ```
 
-**Rozwiązanie:**
-- Sprawdź poprawność URL
-- Zweryfikuj czy film nadal istnieje na Twitchu
-- Niektóre stare filmy mogą być niedostępne
+### Additional Files
 
-#### 2. Błąd 403 - Brak dostępu
-```
-❌ Brak dostępu do filmu (403). Film może być prywatny lub zablokowany.
-```
+The script may create the following additional files:
 
-**Rozwiązanie:**
-- Film może być prywatny
-- Streamer mógł ograniczyć dostęp
-- Spróbuj z innym filmem
+- **`.info.json`** - Video metadata (title, description, statistics)
+- **`.rechat.json`** - Subtitles/chat (if available and enabled)
 
-#### 3. Błędy z napisami
+## 🔧 Troubleshooting
+
+### Common Errors and Solutions
+
+#### 1. Error 404 - Video Not Found
 ```
-❌ Błąd związany z napisami. Film może nie mieć dostępnych napisów.
+❌ Video not found (404). Check if the URL is correct and the video still exists.
 ```
 
-**Rozwiązanie:**
-- Skrypt automatycznie spróbuje ponownie bez napisów
-- Użyj opcji 1-6 zamiast opcji 7
+**Solution:**
+- Verify URL correctness
+- Check if the video still exists on Twitch
+- Some old videos may be unavailable
 
-#### 4. Brak modułu yt-dlp
+#### 2. Error 403 - Access Denied
+```
+❌ Access denied (403). Video may be private or blocked.
+```
+
+**Solution:**
+- Video may be private
+- Streamer may have restricted access
+- Try with a different video
+
+#### 3. Subtitle Errors
+```
+❌ Subtitle-related error. Video may not have available subtitles.
+```
+
+**Solution:**
+- Script will automatically retry without subtitles
+- Use options 1-6 instead of option 7
+
+#### 4. Missing yt-dlp Module
 ```
 ModuleNotFoundError: No module named 'yt_dlp'
 ```
 
-**Rozwiązanie:**
+**Solution:**
 ```bash
 pip install yt-dlp
 ```
 
 ### Debugging
 
-Aby uzyskać więcej informacji o błędach, możesz uruchomić skrypt z dodatkowym logowaniem:
+To get more error information, you can run the script with additional logging:
 
 ```python
-# Dodaj na początku main()
+# Add at the beginning of main()
 import logging
 logging.basicConfig(level=logging.DEBUG)
 ```
 
 ## 📚 API Reference
 
-### Klasa TwitchDownloader
+### TwitchDownloader Class
 
 #### `__init__(download_dir="downloads")`
 
-Inicjalizuje downloader z określonym katalogiem docelowym.
+Initializes the downloader with the specified target directory.
 
-**Parametry:**
-- `download_dir` (str): Katalog docelowy dla pobranych plików
+**Parameters:**
+- `download_dir` (str): Target directory for downloaded files
 
 #### `is_valid_twitch_url(url)`
 
-Sprawdza czy podany URL jest prawidłowym linkiem Twitcha.
+Checks if the provided URL is a valid Twitch link.
 
-**Parametry:**
-- `url` (str): URL do sprawdzenia
+**Parameters:**
+- `url` (str): URL to check
 
-**Zwraca:**
-- `bool`: True jeśli URL jest prawidłowy
+**Returns:**
+- `bool`: True if URL is valid
 
 #### `get_video_info(url)`
 
-Pobiera informacje o filmie bez pobierania.
+Retrieves video information without downloading.
 
-**Parametry:**
-- `url` (str): URL filmu
+**Parameters:**
+- `url` (str): Video URL
 
-**Zwraca:**
-- `dict`: Słownik z informacjami o filmie lub None w przypadku błędu
+**Returns:**
+- `dict`: Dictionary with video information or None on error
 
 #### `download_video(url, quality='best', download_subtitles=False)`
 
-Główna metoda pobierająca film.
+Main method for downloading videos.
 
-**Parametry:**
-- `url` (str): URL filmu
-- `quality` (str): Jakość filmu
-- `download_subtitles` (bool): Czy pobierać napisy
+**Parameters:**
+- `url` (str): Video URL
+- `quality` (str): Video quality
+- `download_subtitles` (bool): Whether to download subtitles
 
-**Zwraca:**
-- `bool`: True jeśli pobieranie zakończone sukcesem
+**Returns:**
+- `bool`: True if download completed successfully
 
-## 💡 Przykłady
+## 💡 Examples
 
-### Przykład 1: Podstawowe pobieranie
+### Example 1: Basic Download
 ```python
 from twitch_downloader import TwitchDownloader
 
@@ -256,33 +256,33 @@ url = "https://www.twitch.tv/videos/2465592622"
 success = downloader.download_video(url)
 
 if success:
-    print("Film został pobrany!")
+    print("Video downloaded successfully!")
 ```
 
-### Przykład 2: Pobieranie z określoną jakością
+### Example 2: Download with Specific Quality
 ```python
-downloader = TwitchDownloader("./moje_filmy")
+downloader = TwitchDownloader("./my_videos")
 url = "https://www.twitch.tv/videos/2465592622"
 success = downloader.download_video(url, quality="720p")
 ```
 
-### Przykład 3: Sprawdzanie informacji przed pobraniem
+### Example 3: Check Information Before Download
 ```python
 downloader = TwitchDownloader()
 url = "https://www.twitch.tv/videos/2465592622"
 
-# Sprawdź informacje
+# Check information
 info = downloader.get_video_info(url)
 if info:
-    print(f"Tytuł: {info['title']}")
-    print(f"Czas trwania: {info['duration']} sekund")
+    print(f"Title: {info['title']}")
+    print(f"Duration: {info['duration']} seconds")
     
-    # Pobierz jeśli film jest krótszy niż 2 godziny
+    # Download if video is shorter than 2 hours
     if info['duration'] < 7200:
         downloader.download_video(url)
 ```
 
-### Przykład 4: Masowe pobieranie
+### Example 4: Batch Download
 ```python
 urls = [
     "https://www.twitch.tv/videos/2465592622",
@@ -294,43 +294,43 @@ downloader = TwitchDownloader()
 
 for url in urls:
     if downloader.is_valid_twitch_url(url):
-        print(f"Pobieranie: {url}")
+        print(f"Downloading: {url}")
         downloader.download_video(url, quality="720p")
     else:
-        print(f"Nieprawidłowy URL: {url}")
+        print(f"Invalid URL: {url}")
 ```
 
-## 🤝 Wsparcie
+## 🤝 Support
 
-### Zgłaszanie błędów
+### Reporting Issues
 
-Jeśli napotkasz problem:
+If you encounter problems:
 
-1. Sprawdź sekcję [Rozwiązywanie problemów](#-rozwiązywanie-problemów)
-2. Upewnij się, że masz najnowszą wersję `yt-dlp`
-3. Sprawdź czy URL jest prawidłowy i film istnieje
+1. Check the [Troubleshooting](#-troubleshooting) section
+2. Ensure you have the latest version of `yt-dlp`
+3. Verify that the URL is correct and the video exists
 
-### Aktualizacje
+### Updates
 
-Aby zaktualizować `yt-dlp` do najnowszej wersji:
+To update `yt-dlp` to the latest version:
 
 ```bash
 pip install --upgrade yt-dlp
 ```
 
-## ⚖️ Informacje prawne
+## ⚖️ Legal Information
 
-- Szanuj prawa autorskie i regulamin Twitcha
-- Pobieraj tylko treści, do których masz prawo
-- Nie rozpowszechniaj pobranych treści bez zgody autorów
-- Skrypt jest przeznaczony do użytku osobistego
+- Respect copyright laws and Twitch's Terms of Service
+- Only download content you have the right to access
+- Do not redistribute downloaded content without permission from creators
+- This script is intended for personal use only
 
-## 📄 Licencja
+## 📄 License
 
-Ten skrypt jest udostępniony w celach edukacyjnych i osobistych. Użytkownicy są odpowiedzialni za przestrzeganie wszystkich obowiązujących przepisów prawa i regulaminów platform.
+This script is provided for educational and personal use purposes. Users are responsible for complying with all applicable laws and platform terms of service.
 
 ---
 
-**Wersja dokumentacji:** 1.0  
-**Data ostatniej aktualizacji:** Maj 2025  
-**Kompatybilność:** Python 3.11+, yt-dlp 2024.x+
+**Documentation Version:** 1.0  
+**Last Updated:** May 2025  
+**Compatibility:** Python 3.11+, yt-dlp 2024.x+
