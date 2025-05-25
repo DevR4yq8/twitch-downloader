@@ -1,3 +1,5 @@
+![](https://i.imgur.com/y3k9QTZ.png)
+
 # Twitch Video Downloader 🎬
 
 Advanced Python script for downloading videos, VODs, and clips from Twitch.tv platform. Utilizes the `yt-dlp` library for reliable content downloading with various quality options and metadata support.
